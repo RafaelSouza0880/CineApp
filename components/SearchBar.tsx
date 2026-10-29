@@ -1,20 +1,54 @@
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+
 type SearchBarProps = {
     value: string;
-    onChange: (text: string) => void;
+    onChangeText: (text: string) => void;
     onClear?: () => void;
 }
 
-import { StyleSheet, View } from "react-native";
-
-export default function SearchBar({ value, onChange, onClear }: SearchBarProps) {
+export default function SearchBar({ value, onChangeText, onClear }: SearchBarProps) {
     return (
-        <View>
-            
+        <View style={styles.container}>
+            <Ionicons name="search" size={20} color={'#94a3b8'} />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Buscar filme por titulo..."
+                placeholderTextColor={'#64748b'}
+                value={value}
+                onChangeText={onChangeText}
+                autoCapitalize="none"
+                autoCorrect={false} 
+            />
+
+            {value?.length > 0 && onClear && (
+                <Pressable onPress={onClear} hitSlop={10}>
+                    <Ionicons name="close-circle" size={18} color={'#94a3b8'} />
+                </Pressable>
+            )}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        backgroundColor: '#161a28',
+        paddingHorizontal: 16,
+        height: 52,
+        marginHorizontal: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: '#262d42'
+    },
+    input: {
+        flex: 1,
+        color: '#fff',
+        fontSize: 15,
+        fontWeight: '500',
+        marginLeft: 10
+    }
 
 })
