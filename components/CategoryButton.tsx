@@ -14,8 +14,8 @@ export default function CategoryButton({ title, selected, onPress }: CategoryBut
             selected ? styles.buttonSelected : styles.buttonUnSelected
         ]}>
 
-            {selected && 
-            <Entypo name="dot-single" size={20} color={'#fff'} />
+            {selected &&
+                <Entypo name="dot-single" size={20} color={'#fff'} />
             }
             <Text style={[
                 styles.title,

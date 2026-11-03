@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Header() {
-    
+
 
     return (
         <View style={styles.headerContainer}>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 
-    brandTitle: { 
+    brandTitle: {
         fontSize: 24,
         fontWeight: "900",
         color: "#FFF",
@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
     },
 
     brandSubtitle: {
-    fontSize: 12,
-    fontWeight: "500",
-    color: "#94A3B8",
-    marginTop: 2,
+        fontSize: 12,
+        fontWeight: "500",
+        color: "#94A3B8",
+        marginTop: 2,
     },
 
     userBadge: {

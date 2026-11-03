@@ -19,7 +19,7 @@ export default function SearchBar({ value, onChangeText, onClear }: SearchBarPro
                 value={value}
                 onChangeText={onChangeText}
                 autoCapitalize="none"
-                autoCorrect={false} 
+                autoCorrect={false}
             />
 
             {value?.length > 0 && onClear && (
