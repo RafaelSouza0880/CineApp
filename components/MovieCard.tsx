@@ -27,12 +27,12 @@ export default function MovieCard({ image, title, category, rating, favorite, on
                     <Rating value={rating} />
                 </View>
 
-                <View>
+                <View style={styles.actionRow}>
                     <Pressable onPress={onDetails} style={styles.detailsButton}>
                         <Text style={styles.detailsButtonText}>Ver detalhes</Text>
                     </Pressable>
 
-                    <Pressable onPress={onFavorite}>
+                    <Pressable onPress={onFavorite} hitSlop={8} style={[styles.favoriteButton, favorite && styles.favoriteButtonActive]} >
                         <Ionicons
                             name={favorite ? "heart" : "heart-outline"}
                             size={20}
@@ -50,6 +50,7 @@ export default function MovieCard({ image, title, category, rating, favorite, on
 const styles = StyleSheet.create({
     card: {
         marginHorizontal: 20,
+        marginBottom: 20,
         borderWidth: 1,
         borderRadius: 18,
         borderColor: '#242b40',
@@ -106,5 +107,27 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '700',
         color: '#fff',
+    },
+
+    actionRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10
+    },
+
+    favoriteButton: {
+        width: 42,
+        height: 42,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#1e2437',
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#2d3650'
+    },
+
+    favoriteButtonActive: {
+        backgroundColor: 'rgba(255, 51, 102, 0,16)',
+        borderColor: '#ff3366'
     }
 })

@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
@@ -9,39 +9,93 @@ export default function App() {
   const [pesquisa, setPesquisa] = useState("");
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+    <ScrollView>
+      <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
 
-      <Header />
+        <Header />
 
-      <SearchBar value={pesquisa} onChangeText={(texto) => setPesquisa(texto)} onClear={() => setPesquisa("")} />
+        <SearchBar value={pesquisa} onChangeText={(texto) => setPesquisa(texto)} onClear={() => setPesquisa("")} />
 
-      <View style={styles.containerCategory}>
-        <CategoryButton title='Todos' selected={true} onPress={() => {}} />
-        <CategoryButton title='Ação' selected={false} onPress={() => {}} />
-      </View>
-
-      <View style={styles.sectionMovie}>
-        <View style={styles.sectionTitleRow}>
-          <View style={styles.accentBar}></View>
-          <Text style={styles.sectionTitle}>Filmes em Destaques</Text>
+        <View style={styles.containerCategory}>
+          <CategoryButton title='Todos' selected={true} onPress={() => { }} />
+          <CategoryButton title='Ação' selected={false} onPress={() => { }} />
         </View>
-        <View style={styles.countBadge}>
-          <Text style={styles.sectionCount}>6 filmes</Text>
+
+        <View style={styles.sectionMovie}>
+          <View style={styles.sectionTitleRow}>
+            <View style={styles.accentBar}></View>
+            <Text style={styles.sectionTitle}>Filmes em Destaques</Text>
+          </View>
+          <View style={styles.countBadge}>
+            <Text style={styles.sectionCount}>6 filmes</Text>
+          </View>
         </View>
+
+
+        <MovieCard
+          image={require('./assets/movies/vingadores-ultimato.jpg')}
+          title="Vingadores: Ultimato"
+          category="Ação"
+          rating={4.9}
+          favorite={false}
+          onFavorite={() => { }}
+          onDetails={() => { }}
+        />
+
+        <MovieCard
+          image={require('./assets/movies/ate-ultimo-homem.jpg')}
+          title="Ate o Ultimo Homem"
+          category="Drama"
+          rating={4.8}
+          favorite={false}
+          onFavorite={() => { }}
+          onDetails={() => { }}
+        />
+
+        <MovieCard
+          image={require('./assets/movies/homem-aranha-um-novo-dia.jpg')}
+          title="Homem-Aranha: Um Novo Dia"
+          category="Ação"
+          rating={4.8}
+          favorite={false}
+          onFavorite={() => { }}
+          onDetails={() => { }}
+        />
+
+        <MovieCard
+          image={require('./assets/movies/monstro-sa.jpg')}
+          title="Monstro S.A."
+          category="Animação"
+          rating={4.9}
+          favorite={false}
+          onFavorite={() => { }}
+          onDetails={() => { }}
+        />
+
+        <MovieCard
+          image={require('./assets/movies/para-todos-garotos-amei.jpg')}
+          title="Para Todos os Garotos que Já Amei"
+          category="Romance"
+          rating={4.5}
+          favorite={false}
+          onFavorite={() => { }}
+          onDetails={() => { }}
+        />
+
+        <MovieCard
+          image={require('./assets/movies/titanic.jpg')}
+          title="Titanic"
+          category="Drama"
+          rating={4.8}
+          favorite={false}
+          onFavorite={() => { }}
+          onDetails={() => { }}
+        />
+
+
       </View>
-
-      <MovieCard 
-      image={require('./assets/movies/vingadores-ultimato.jpg')} 
-      title="Vingadores: Ultimato" 
-      category="Ação" 
-      rating={4.9} 
-      favorite={false} 
-      onFavorite={() => {}} 
-      onDetails={() => {}} 
-      />
-
-    </View>
+    </ScrollView>
   );
 }
 
