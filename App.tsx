@@ -4,9 +4,19 @@ import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import CategoryButton from './components/CategoryButton';
 import MovieCard from './components/MovieCard';
+import { movies } from './data/movies';
 
 export default function App() {
-  const [pesquisa, setPesquisa] = useState("");
+  const [search, setSearch] = useState("");
+
+  const filteredMovies = movies.filter((movie) => {
+    const matchesSearch = movie.title.toLowerCase().includes(search.toLowerCase().trim());
+    return matchesSearch;
+  });
+
+  const handleSearchClear = () => {
+    setSearch("");
+  }
 
   return (
     <ScrollView>
@@ -15,7 +25,7 @@ export default function App() {
 
         <Header />
 
-        <SearchBar value={pesquisa} onChangeText={(texto) => setPesquisa(texto)} onClear={() => setPesquisa("")} />
+        <SearchBar value={search} onChangeText={setSearch} onClear={handleSearchClear} />
 
         <View style={styles.containerCategory}>
           <CategoryButton title='Todos' selected={true} onPress={() => { }} />
@@ -32,67 +42,18 @@ export default function App() {
           </View>
         </View>
 
-
-        <MovieCard
-          image={require('./assets/movies/vingadores-ultimato.jpg')}
-          title="Vingadores: Ultimato"
-          category="Ação"
-          rating={4.9}
-          favorite={false}
-          onFavorite={() => { }}
-          onDetails={() => { }}
-        />
-
-        <MovieCard
-          image={require('./assets/movies/ate-ultimo-homem.jpg')}
-          title="Ate o Ultimo Homem"
-          category="Drama"
-          rating={4.8}
-          favorite={false}
-          onFavorite={() => { }}
-          onDetails={() => { }}
-        />
-
-        <MovieCard
-          image={require('./assets/movies/homem-aranha-um-novo-dia.jpg')}
-          title="Homem-Aranha: Um Novo Dia"
-          category="Ação"
-          rating={4.8}
-          favorite={false}
-          onFavorite={() => { }}
-          onDetails={() => { }}
-        />
-
-        <MovieCard
-          image={require('./assets/movies/monstro-sa.jpg')}
-          title="Monstro S.A."
-          category="Animação"
-          rating={4.9}
-          favorite={false}
-          onFavorite={() => { }}
-          onDetails={() => { }}
-        />
-
-        <MovieCard
-          image={require('./assets/movies/para-todos-garotos-amei.jpg')}
-          title="Para Todos os Garotos que Já Amei"
-          category="Romance"
-          rating={4.5}
-          favorite={false}
-          onFavorite={() => { }}
-          onDetails={() => { }}
-        />
-
-        <MovieCard
-          image={require('./assets/movies/titanic.jpg')}
-          title="Titanic"
-          category="Drama"
-          rating={4.8}
-          favorite={false}
-          onFavorite={() => { }}
-          onDetails={() => { }}
-        />
-
+        {filteredMovies.map((movies) => (
+          <MovieCard
+            key={movies.id}
+            image={movies.image}
+            title={movies.title}
+            category={movies.category}
+            rating={movies.rating}
+            favorite={false}
+            onDetails={() => { }}
+            onFavorite={() => { }}
+          />
+        ))}
 
       </View>
     </ScrollView>
